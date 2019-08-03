@@ -1,6 +1,6 @@
-import electron = require('electron');
-// Module to control application life
-const app = electron.app;
+import {app,BrowserWindow} from 'electron';
+
+
 
 // This should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent(app)) {
@@ -8,15 +8,15 @@ if (handleSquirrelEvent(app)) {
 	app.quit();
 }
 
+
 import path = require('path');
 import url = require('url');
 
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+import {LOLI} from './src/backend/lol';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow: electron.BrowserWindow;
+let mainWindow: BrowserWindow;
 
 // Get environment type (dev / prod)
 const args = process.argv.slice(1);
@@ -24,8 +24,8 @@ let dev = args.some(arg => arg === '--dev');
 
 function createWindow() {
 	// Create the browser window.
-	mainWindow = new BrowserWindow({ width: 1024, height: 720 });
-	mainWindow.setMenu(null);
+	mainWindow = new BrowserWindow({ width: 122, height: 720 });
+
 
 	if (!dev) {
 		// and load the index.html of the app.

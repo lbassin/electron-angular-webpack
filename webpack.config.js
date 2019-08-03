@@ -43,7 +43,7 @@ let webpackConfig = {
     // Where webpack looks to start building the bundle
     entry: {
         'electron': './electron', // Electron entry point
-        'corejs': 'core-js/client/shim', // Angular dependency
+        'corejs': 'core-js/features/reflect', // Angular dependency
         'zonejs': 'zone.js/dist/zone', // Angular dependency
         'app': './src/main.ts' // App entry point
     },
@@ -69,7 +69,6 @@ let webpackConfig = {
                 {
                     loader: 'css-loader',
                     options: {
-                        minimize: !dev
                     }
                 },
                 {
