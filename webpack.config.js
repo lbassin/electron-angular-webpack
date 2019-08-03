@@ -4,7 +4,9 @@ const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const exec = require('child_process').exec;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 // Html-webpack-plugin configuration
@@ -157,7 +159,7 @@ let webpackConfig = {
 
 // UglifyJs and clean output folder only for prod
 if (!dev) {
-    webpackConfig.plugins.push(new CleanWebpackPlugin(pathsToClean));
+    webpackConfig.plugins.push(new CleanWebpackPlugin());
     webpackConfig.plugins.push(new UglifyJsPlugin());
 }
 
