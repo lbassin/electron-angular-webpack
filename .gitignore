@@ -7,6 +7,8 @@ node_modules/*
 
 # ide
 .idea/*
+.vscode/*
+.DS_Store
 
 # mac packager/installer
 mac_packager/*

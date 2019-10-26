@@ -4,7 +4,8 @@ const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const exec = require('child_process').exec;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 // Html-webpack-plugin configuration
@@ -43,7 +44,7 @@ let webpackConfig = {
     // Where webpack looks to start building the bundle
     entry: {
         'electron': './electron', // Electron entry point
-        'corejs': 'core-js/client/shim', // Angular dependency
+        'corejs': 'core-js/features/reflect', // Angular dependency
         'zonejs': 'zone.js/dist/zone', // Angular dependency
         'app': './src/main.ts' // App entry point
     },
@@ -69,7 +70,6 @@ let webpackConfig = {
                 {
                     loader: 'css-loader',
                     options: {
-                        minimize: !dev
                     }
                 },
                 {
@@ -152,14 +152,15 @@ let webpackConfig = {
     plugins: [
         new HtmlWebpackPlugin(indexConfig),
         new Webpack.ContextReplacementPlugin(/angular([\\\/])core([\\\/])/, path.resolve(__dirname, './src')),
-        new CopyWebpackPlugin(['./package.json']),
+        new CopyWebpackPlugin(['./package.json',{ from: 'src/assets', to: 'assets' }]),
     ],
 };
 
-// UglifyJs and clean output folder only for prod
+// UglifyJs/Terse and clean output folder only for prod
 if (!dev) {
-    webpackConfig.plugins.push(new CleanWebpackPlugin(pathsToClean));
-    webpackConfig.plugins.push(new UglifyJsPlugin());
+    webpackConfig.plugins.push(new CleanWebpackPlugin());
+   // webpackConfig.plugins.push(new UglifyJsPlugin()); //es5 compatible (currently)
+    webpackConfig.plugins.push(new TerserPlugin()); //es6 compatible
 }
 
 // Export the config

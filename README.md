@@ -4,7 +4,7 @@
 
 <hr>
 
-> A simple kit for [Electron](https://electronjs.org/), [Angular 6](https://angular.io) and [Webpack 4](https://webpack.js.org) including a live reload system for Angular
+> A simple kit for [Electron](https://electronjs.org/), [Angular 8](https://angular.io) and [Webpack 4](https://webpack.js.org) including a live reload system for Angular
 
 > The boilerplate include loaders for [TypeScript](https://www.typescriptlang.org/) and [Sass](http://sass-lang.com/)
 
