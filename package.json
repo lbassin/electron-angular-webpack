@@ -46,7 +46,7 @@
 		"imagemin": "^7.0.0",
 		"img-loader": "^3.0.1",
 		"lodash": "^4.17.15",
-		"node-sass": "^4.12.0",
+		"node-sass": "^7.0.0",
 		"postcss-loader": "^3.0.0",
 		"raw-loader": "^3.1.0",
 		"resolve-url-loader": "^3.1.0",
